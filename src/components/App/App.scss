@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Nunito';
+  src: url('/stuff/fonts/Nunito-SemiBold.ttf');
+}
+
+* {
+  font-family: Nunito;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgb(121, 152, 247);
+
+  .content {
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+  }
+}
