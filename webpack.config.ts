@@ -27,7 +27,7 @@ const webpackConfig = (env): Configuration => ({
         },
         exclude: /dist/,
       },
-      { test: /\.scss$/, use: [ "style-loader", "css-loader", "sass-loader" ] },
+      { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
     ],
   },
   plugins: [
