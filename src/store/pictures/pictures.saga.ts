@@ -1,4 +1,4 @@
-//https://api.giphy.com/v1/gifs/search?api_key=JwZEALrQR5Tawm640pG7W74oPJxjbXN4&q=cats&limit=10&offset=0&rating=g&lang=en
+//https://api.giphy.com/v1/gifs/search?api_key={API_KEY}&q=cats&limit=10&offset=0&rating=g&lang=en
 
 import axios from 'axios'
 import { put, delay, takeLatest } from 'redux-saga/effects'
