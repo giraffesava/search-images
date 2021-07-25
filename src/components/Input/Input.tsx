@@ -1,8 +1,21 @@
 import React from 'react'
 import './Input.scss'
 
-const Input: React.FC = () => {
-  return <input type="text" autoFocus placeholder="Введите тег" />
+interface Props {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  value: string
+}
+
+const Input: React.FC<Props> = ({ onChange, value }) => {
+  return (
+    <input
+      type="text"
+      autoFocus
+      placeholder="Введите тег"
+      onChange={onChange}
+      value={value}
+    />
+  )
 }
 
 export default Input
