@@ -5,13 +5,13 @@ export enum Pictures {
 }
 
 export interface PictureTypes {
-  type?: Pictures
+  type: Pictures
   keyword?: string
-  data?: any[]
+  data?: []
 }
 
 export interface PictureStore {
   loading: boolean
   error: boolean
-  data: any[]
+  data: []
 }

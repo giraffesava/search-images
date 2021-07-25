@@ -7,7 +7,7 @@ export const getPictures = (keyword: string): PictureTypes => {
   }
 }
 
-export const successGettingPictures = (data: Array<any>): PictureTypes => {
+export const successGettingPictures = (data: []): PictureTypes => {
   return {
     type: Pictures.SUCCESS_GETTING_PICTURES,
     data,

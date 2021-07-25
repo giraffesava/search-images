@@ -2,8 +2,8 @@ import { PictureStore, Pictures } from '../types'
 import { PicturesActions } from './pictures.actions'
 
 const InitialStore: PictureStore = {
-  error: false,
   loading: false,
+  error: false,
   data: [],
 }
 
@@ -28,6 +28,8 @@ const pictureReducer = (
         ...state,
         error: true,
       }
+    default:
+      return state
   }
 }
 
