@@ -5,17 +5,25 @@ import { v4 as uuidv4 } from 'uuid'
 interface Props {
   data: any[]
   title: string
+  onClick: (title: string) => void
 }
 
-const Group: React.FC<Props> = ({ data, title }) => {
+const Group: React.FC<Props> = ({ data, title, onClick }) => {
   const titleChange = [...new Set(title.split(','))].join(',')
   return (
     <div className="group-container">
       <h1>{titleChange}</h1>
       <div className="group-content">
         {data.map((item) => {
-          title = item.title
-          return <Photo url={item.url} title={item.title} key={uuidv4()} />
+          //title = item.title
+          return (
+            <Photo
+              url={item.url}
+              title={titleChange}
+              key={uuidv4()}
+              onClick={onClick}
+            />
+          )
         })}
       </div>
     </div>

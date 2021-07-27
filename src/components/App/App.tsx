@@ -28,6 +28,10 @@ const App: React.FC = () => {
     }
   }
 
+  const getValueByClick = (title: string) => {
+    setValue(title)
+  }
+
   // GROUP
   const groupedData = state.data.reduce((group, tag) => {
     if (!group[tag.title]) group[tag.title] = []
@@ -36,7 +40,14 @@ const App: React.FC = () => {
   }, {})
 
   const grouping = Object.keys(groupedData).map((key) => {
-    return <Group data={groupedData[key]} title={key} key={uuidv4()} />
+    return (
+      <Group
+        data={groupedData[key]}
+        title={key}
+        key={uuidv4()}
+        onClick={getValueByClick}
+      />
+    )
   })
 
   const downloadPicturesHandler = () => {
@@ -89,9 +100,10 @@ const App: React.FC = () => {
             ? grouping
             : state.data.map((item) => (
                 <Photo
-                  title={item.title && item.title[0]}
+                  title={item.title}
                   url={item.url}
                   key={uuidv4()}
+                  onClick={getValueByClick}
                 />
               ))}
         </div>
