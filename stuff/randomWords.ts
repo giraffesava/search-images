@@ -1,0 +1,18 @@
+export const randomWords = [
+  'orange',
+  'cat',
+  'cats',
+  'dogs',
+  'dog',
+  'parrot',
+  'cow',
+  'telephone',
+  'tv',
+  'game',
+  'football',
+  'hockey',
+  'family',
+  'smile',
+  'pig',
+  'horse',
+]
