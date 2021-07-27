@@ -19,7 +19,7 @@ const Photo: React.FC<Props> = ({ url, title, onClick }) => {
               alt={title}
               className="images"
               key={uuidv4()}
-              onClick={() => onClick(title[1])}
+              onClick={() => onClick(title[0])}
             />
           ))}
         </div>

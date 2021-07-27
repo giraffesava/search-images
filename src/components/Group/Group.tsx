@@ -15,11 +15,11 @@ const Group: React.FC<Props> = ({ data, title, onClick }) => {
       <h1>{titleChange}</h1>
       <div className="group-content">
         {data.map((item) => {
-          //title = item.title
+          title = item.title
           return (
             <Photo
               url={item.url}
-              title={titleChange}
+              title={title}
               key={uuidv4()}
               onClick={onClick}
             />
