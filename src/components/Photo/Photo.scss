@@ -2,13 +2,14 @@
   display: inline-block;
   width: 200px;
   height: 200px;
-  margin: 10px 20px;
+  margin: 5px 10px 0 10px;
   border-radius: 10px;
 }
 
-.hoho {
+.wrapper {
   display: inline-block;
-  min-height: 240px;
+  min-height: 200px;
+  margin: 5px 5px 0 5px;
 }
 
 .double-image {
@@ -16,7 +17,7 @@
   flex-direction: column;
   max-width: 150px;
   max-height: 150px;
-  margin: 10px 20px;
+  margin: 5px 10px 0 10px;
 }
 .images {
   max-width: 100%;

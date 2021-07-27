@@ -8,7 +8,7 @@ interface Props {
 
 const Photo: React.FC<Props> = ({ url, title }) => {
   return (
-    <div className="hoho">
+    <div className="wrapper">
       {Array.isArray(url) ? (
         <div className="double-image">
           {url.map((urls) => (
