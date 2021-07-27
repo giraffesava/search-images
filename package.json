@@ -5,7 +5,7 @@
   "author": "Sava",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --mode development --env development --stats verbose",
+    "start": "webpack serve --mode development --env development --stats verbose --open",
     "build": "webpack --mode production --env production",
     "lint": "eslint './src/**/*.{ts,tsx}' --quiet",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
