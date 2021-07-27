@@ -10,6 +10,10 @@
   border: none;
   font-size: 18px;
 
+  @media (max-width: 1000px) {
+    margin-top: 10px;
+    width: 200px;
+  }
   &:active {
     transform: translateY(3px);
   }
@@ -31,4 +35,7 @@
 .group {
   background-color: rgb(72, 23, 218);
   width: 160px;
+  @media (max-width: 1000px) {
+    width: 200px;
+  }
 }
