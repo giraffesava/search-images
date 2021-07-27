@@ -6,9 +6,12 @@ import {
   //pollingStart,
   //pollingEnd,
 } from './pictures.actions'
-import { API_KEY } from './../API_KEY'
+//import { API_KEY } from './../API_KEY'
 import { Pictures } from '../types'
 import { randomWords } from './../../../stuff/randomWords'
+
+const API_KEY = 'ДОБАВИТЬ СЮДА API_KEY'
+
 // форматирование данных, переход из массива в объект
 const reduceFunc = (data) => {
   return data.reduce((acc, item) => {
@@ -30,17 +33,15 @@ const reduceFunc = (data) => {
 
 // Создаю url адресс для запроса
 const urlFunc = (request) => {
-  let keyword
+  let keyword = `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=`
   if (request.includes(',')) {
     keyword = request.split(',').map((item) => {
-      return `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${item}`
+      return keyword + item
     })
   } else if (request === 'keyword') {
-    keyword = `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${
-      randomWords[Math.floor(Math.random() * randomWords.length)]
-    }`
+    keyword += randomWords[Math.floor(Math.random() * randomWords.length)]
   } else {
-    keyword = `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${request}`
+    keyword += request
   }
   return keyword
 }
@@ -73,9 +74,11 @@ function* getPicturesWorker(word) {
   if (keyword.includes(',')) {
     try {
       const startData = yield Promise.all(
-        createdUrl.map((item) => {
-          return fetchData(item)
-        }),
+        Array.isArray(createdUrl)
+          ? createdUrl.map((item) => {
+              return fetchData(item)
+            })
+          : null,
       )
       const semiData = startData.map((item) => {
         return { url: item.data.image_url, title: keyword }
