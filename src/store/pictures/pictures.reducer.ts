@@ -3,8 +3,10 @@ import { PicturesActions } from './pictures.actions'
 
 const InitialStore: PictureStore = {
   loading: false,
-  error: false,
+  serverError: false,
   data: [],
+  notFoundError: false,
+  polling: false,
 }
 
 const pictureReducer = (
@@ -21,12 +23,29 @@ const pictureReducer = (
       return {
         ...state,
         loading: false,
-        data: action.data,
+        serverError: false,
+        notFoundError: false,
+        data: [...state.data, action.data],
       }
     case Pictures.FAILED_GETTING_PICTURES:
       return {
         ...state,
-        error: true,
+        loading: false,
+        notFoundError: true,
+      }
+    case Pictures.DELETE_DATA_PICTURES:
+      return {
+        ...state,
+        loading: false,
+        serverError: false,
+        notFoundError: false,
+        data: [],
+      }
+    case Pictures.FAILED_SERVER:
+      return {
+        ...state,
+        loading: false,
+        serverError: true,
       }
     default:
       return state
