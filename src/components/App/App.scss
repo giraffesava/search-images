@@ -12,12 +12,24 @@
 
 .container {
   min-height: 100vh;
-  width: 100%;
-  background-color: rgb(121, 152, 247);
 
   .content {
     margin: 0 auto;
     width: 60%;
     text-align: center;
   }
+}
+
+.photo-container {
+  width: 100%;
+  display: flex;
+  margin: 40px auto;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.error {
+  font-size: 20px;
+  height: 30px;
+  width: 100%;
 }

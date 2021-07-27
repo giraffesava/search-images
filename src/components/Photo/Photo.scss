@@ -1,4 +1,32 @@
-img {
-  width: 100px;
+.image {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  margin: 10px 20px;
+  border-radius: 10px;
+}
+
+.hoho {
+  display: inline-block;
+  min-height: 240px;
+}
+
+.double-image {
+  display: flex;
+  flex-direction: column;
+  max-width: 150px;
+  max-height: 150px;
+  margin: 10px 20px;
+}
+.images {
+  max-width: 100%;
   height: 100px;
+  &:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  &:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 }
