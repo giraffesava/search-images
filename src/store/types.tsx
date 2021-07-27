@@ -11,7 +11,7 @@ export enum Pictures {
 export interface PictureTypes {
   type: Pictures
   keyword?: string
-  data?: any[]
+  data?: { url: [] | string; title: [] | string }
 }
 
 export interface PictureStore {
@@ -19,5 +19,4 @@ export interface PictureStore {
   serverError: boolean
   data: any[]
   notFoundError: boolean
-  polling: boolean
 }
