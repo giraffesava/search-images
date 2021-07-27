@@ -2,6 +2,8 @@
 
 ## This website created only for desktop at the moment
 
+![gif_website](./gif_website.gif)
+
 ## INSTALLATION:
 
 ### `npm install`
