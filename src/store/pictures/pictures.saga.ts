@@ -1,40 +1,108 @@
-import { put, delay, takeLatest } from 'redux-saga/effects'
+import { put, takeEvery } from 'redux-saga/effects'
 import {
   successGettingPictures,
   failedGettingPictures,
+  failedServer,
+  //pollingStart,
+  //pollingEnd,
 } from './pictures.actions'
 import { API_KEY } from './../API_KEY'
 import { Pictures } from '../types'
+import { randomWords } from './../../../stuff/randomWords'
+// форматирование данных, переход из массива в объект
+const reduceFunc = (data) => {
+  return data.reduce((acc, item) => {
+    if (data.length > 1) {
+      for (let key in item) {
+        if (!acc[key]) {
+          acc[key] = []
+        }
+        acc[key].push(item[key])
+      }
+    } else {
+      for (let key in item) {
+        acc[key] = item[key]
+      }
+    }
+    return acc
+  }, {})
+}
+
+// Создаю url адресс для запроса
+const urlFunc = (request) => {
+  let keyword
+  if (request.includes(',')) {
+    keyword = request.split(',').map((item) => {
+      return `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${item}`
+    })
+  } else if (request === 'keyword') {
+    keyword = `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${
+      randomWords[Math.floor(Math.random() * randomWords.length)]
+    }`
+  } else {
+    keyword = `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${request}`
+  }
+  return keyword
+}
+
+// Получаю данные и обрабатываю из API
+const fetchData = (urlAddress) => {
+  return fetch(urlAddress).then((res) => res.json())
+}
+
+//Проверка возвращает ли что-то сервер
+const checkData = (data) => {
+  const type = typeof data.url
+  let checkObj
+  if (type === 'object') {
+    checkObj = data.url.some((item) => {
+      return item === undefined
+    })
+  }
+  if ((!checkObj && checkObj !== undefined) || type === 'string') {
+    return put(successGettingPictures(data))
+  }
+  return put(failedGettingPictures())
+}
 
 function* getPicturesWorker(word) {
   const { keyword } = word
-  const keywords = keyword.split(',').map((item) => {
-    return `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=3&q=${item}`
-  })
-  try {
-    const data = yield Promise.all(
-      keywords.map((url) =>
-        fetch(url)
-          .then((res) => res.json())
-          .then((resp) =>
-            resp.data.map((item) => {
-              const numberQ = url.indexOf('q') + 2 // numberQ - число, которое поможет определить слово, по-которому делается запрос(после "q=")
-              return {
-                url: item.images.downsized.url,
-                title: url.slice(numberQ, url.length),
-              }
-            }),
-          ),
-      ),
-    )
-    // Из массивов в массиве делаю массив со всеми объектами
-    const dataFinal = data.reduce((acc, items) => acc.concat(items), [])
-    yield put(successGettingPictures(dataFinal))
-  } catch (error) {
-    yield put(failedGettingPictures())
+  const createdUrl = urlFunc(keyword)
+
+  //Проверяю содержит ли запрос ",", если да, то обратываю через Promise.all
+  if (keyword.includes(',')) {
+    try {
+      const startData = yield Promise.all(
+        createdUrl.map((item) => {
+          return fetchData(item)
+        }),
+      )
+      const semiData = startData.map((item) => {
+        return { url: item.data.image_url, title: keyword }
+      })
+      const finalData = yield reduceFunc(semiData)
+      yield checkData(finalData)
+    } catch (error) {
+      yield put(failedServer())
+    }
+  } /*else if (keyword === 'delay') {
+    try {
+      put(pollingStart())
+      while (true) {
+        ;('выполнять запрос')
+      }
+    } catch {}
+  } */ else {
+    try {
+      const startData = yield fetchData(createdUrl)
+      const finalData = { url: startData.data.image_url, title: keyword }
+      yield checkData(finalData)
+    } catch (error) {
+      yield put(failedServer())
+    }
   }
 }
 
 export function* getPicturesWatcher(): Generator {
-  yield takeLatest(Pictures.GET_PICTURES, getPicturesWorker)
+  yield takeEvery(Pictures.GET_PICTURES, getPicturesWorker)
 }
