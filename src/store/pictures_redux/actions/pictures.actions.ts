@@ -1,4 +1,4 @@
-import { PictureTypes, Pictures } from '../types'
+import { PictureTypes, Pictures } from '../../types'
 
 export const getPictures = (keyword: string): PictureTypes => {
   return {
@@ -7,7 +7,10 @@ export const getPictures = (keyword: string): PictureTypes => {
   }
 }
 
-export const successGettingPictures = (data: []): PictureTypes => {
+export const successGettingPictures = (data: {
+  url: [] | string
+  title: [] | string
+}): PictureTypes => {
   return {
     type: Pictures.SUCCESS_GETTING_PICTURES,
     data,

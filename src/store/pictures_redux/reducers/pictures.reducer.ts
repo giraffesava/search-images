@@ -1,12 +1,11 @@
-import { PictureStore, Pictures } from '../types'
-import { PicturesActions } from './pictures.actions'
+import { PictureStore, Pictures } from '../../types'
+import { PicturesActions } from '../actions/pictures.actions'
 
 const InitialStore: PictureStore = {
   loading: false,
   serverError: false,
   data: [],
   notFoundError: false,
-  polling: false,
 }
 
 const pictureReducer = (

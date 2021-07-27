@@ -1,3 +1,4 @@
+// Рандомные слова для api запросов
 export const randomWords = [
   'orange',
   'cat',
@@ -15,4 +16,6 @@ export const randomWords = [
   'smile',
   'pig',
   'horse',
+  'pinguin',
+  'giraffe',
 ]

@@ -6,8 +6,10 @@ import Button from './../Button/Button'
 import {
   getPictures,
   deleteDataPictures,
-} from './../../store/pictures/pictures.actions'
-import { pictureSelector } from './../../store/pictures/characters.selectors'
+  pollingStart,
+  pollingEnd,
+} from '../../store/pictures_redux/actions/pictures.actions'
+import { pictureSelector } from '../../store/pictures_redux/selectors/characters.selectors'
 import Photo from './../Photo/Photo'
 import Group from 'components/Group/Group'
 import { v4 as uuidv4 } from 'uuid'
@@ -19,20 +21,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch()
   const state = useSelector(pictureSelector)
 
-  const inputValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const check = /^[A-Za-z,\ ]{0,15}$/.test(e.target.value)
-    if (check) {
-      setValue(e.target.value.trim())
-    } else {
-      setError(true)
-    }
-  }
-
-  const getValueByClick = (title: string) => {
-    setValue(title)
-  }
-
-  // GROUP
+  // Группировка
   const groupedData = state.data.reduce((group, tag) => {
     if (!group[tag.title]) group[tag.title] = []
     group[tag.title].push(tag)
@@ -50,9 +39,27 @@ const App: React.FC = () => {
     )
   })
 
+  // Обработка и проверка вводимых данных
+  const inputValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const check = /^[A-Za-z,\ ]{0,10}$/.test(e.target.value)
+    if (check) {
+      setValue(e.target.value.trim())
+    } else {
+      setError(true)
+    }
+  }
+
+  // Вводить в инпут название тега кликом мыши
+  const getValueByClick = (title: string) => {
+    setValue(title)
+  }
+
+  // Кнопки
   const downloadPicturesHandler = () => {
     if (!value) {
       setError(true)
+    } else if (value === 'delay') {
+      dispatch(pollingStart())
     } else {
       setError(false)
       dispatch(getPictures(value))
@@ -60,6 +67,7 @@ const App: React.FC = () => {
   }
 
   const deletePicturesHandler = () => {
+    dispatch(pollingEnd())
     setError(false)
     setValue('')
     dispatch(deleteDataPictures())
