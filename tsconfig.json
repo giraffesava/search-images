@@ -4,7 +4,7 @@
     "noImplicitAny": false,
     "module": "commonjs",
     "target": "es5",
-    "lib": ["esnext", "dom", "dom.iterable"],
+    "lib": ["es5", "es6", "dom", "dom.iterable"],
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
