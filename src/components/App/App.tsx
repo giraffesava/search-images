@@ -54,6 +54,7 @@ const App: React.FC = () => {
       setError(false)
       dispatch(getPictures(value))
     }
+    setValue('')
   }
 
   const deletePicturesHandler = () => {
