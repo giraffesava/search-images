@@ -33,6 +33,7 @@ const webpackConfig = (env): Configuration => ({
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      favicon: './src/favicon.png',
     }),
     new webpack.DefinePlugin({
       'process.env.NAME': JSON.stringify(require('./package.json').name),
