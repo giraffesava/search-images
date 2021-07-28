@@ -1,8 +1,10 @@
 # Gif search website
 
-## This website created only for desktop at the moment
+### Desktop verion:
 
-![gif_website](./gif_website.gif)
+![gif_website](./stuff/gif_website.gif)
+
+This website created for desktop, mobile and tablet. You can see mobile and tablet down below
 
 ## INSTALLATION:
 
@@ -14,9 +16,9 @@
 
 You can use my API address: API_KEY = `JwZEALrQR5Tawm640pG7W74oPJxjbXN4`
 
-You need to change the file `src/store/pictures/pictures.saga.ts` on the 13 line and add API_KEY i mentioned before
+You need to change the file `src/store/API_KEY.ts` by adding API_KEY i mentioned before
 
-Чтобы воспользоваться моим API необходимо заменить в файле `src/store/pictures/pictures.saga.ts` на 13 строке API_KEY, на тот, что я указал выше.
+Чтобы воспользоваться моим API необходимо заменить в файле `src/store/API_KEY.ts` API_KEY, на тот, что я указал выше.
 
 ## DEPENDENCIES
 
@@ -28,3 +30,11 @@ You need to change the file `src/store/pictures/pictures.saga.ts` on the 13 line
     "uuid": "^3.4.0"
 
 ### I've used this API: https://api.giphy.com
+
+### Mobile version:
+
+![mobile_version](./stuff/mobile.png)
+
+### Tablet version:
+
+![tablet_version](./stuff/tablet.png)
