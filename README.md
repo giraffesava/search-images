@@ -1,6 +1,6 @@
 # Gif search website
 
-### Desktop verion:
+### Desktop version:
 
 ![gif_website](./stuff/gif_website.gif)
 
@@ -33,8 +33,8 @@ You need to change the file `src/store/API_KEY.ts` by adding API_KEY i mentioned
 
 ### Mobile version:
 
-![mobile_version](./stuff/mobile.png)
+<img src="./stuff/mobile.png" height="200px">
 
 ### Tablet version:
 
-![tablet_version](./stuff/tablet.png)
+<img src="./stuff/mobile.png" height="200px">
