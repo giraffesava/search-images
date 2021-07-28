@@ -33,8 +33,8 @@ You need to change the file `src/store/API_KEY.ts` by adding API_KEY i mentioned
 
 ### Mobile version:
 
-<img src="./stuff/mobile.png" height="200px">
+<img src="./stuff/mobile.png" height="200px" />
 
 ### Tablet version:
 
-<img src="./stuff/mobile.png" height="200px">
+<img src="./stuff/mobile.png" height="200px" />
