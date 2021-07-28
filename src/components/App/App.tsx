@@ -12,6 +12,7 @@ import {
 import { pictureSelector } from '../../store/pictures_redux/selectors/characters.selectors'
 import Photo from './../Photo/Photo'
 import Group from 'components/Group/Group'
+import Error from './../Error/Error'
 import { v4 as uuidv4 } from 'uuid'
 
 const App: React.FC = () => {
@@ -27,17 +28,6 @@ const App: React.FC = () => {
     group[tag.title].push(tag)
     return group
   }, {})
-
-  const grouping = Object.keys(groupedData).map((key) => {
-    return (
-      <Group
-        data={groupedData[key]}
-        title={key}
-        key={uuidv4()}
-        onClick={getValueByClick}
-      />
-    )
-  })
 
   // Обработка и проверка вводимых данных
   const inputValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,18 +84,19 @@ const App: React.FC = () => {
         <Button type="group" onClick={groupPicturesHandler}>
           {isGroup ? 'Разгруппировать' : 'Группировать'}
         </Button>
-        <div className="error">
-          {state.notFoundError
-            ? 'По тегу ничего не найдено'
-            : state.serverError
-            ? 'Произошла http ошибки'
-            : error && value.length < 1
-            ? 'заполните поле "тег"'
-            : null}
-        </div>
+        <Error error={error} value={value} />
         <div className="photo-container">
           {isGroup
-            ? grouping
+            ? Object.keys(groupedData).map((key) => {
+                return (
+                  <Group
+                    data={groupedData[key]}
+                    title={key}
+                    key={uuidv4()}
+                    onClick={getValueByClick}
+                  />
+                )
+              })
             : state.data.map((item) => (
                 <Photo
                   title={item.title}
