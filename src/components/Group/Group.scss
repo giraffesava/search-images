@@ -1,17 +1,32 @@
+@import './../App/App.scss';
+
 .group-container {
-  width: 70%;
+  width: 100%;
   border-radius: 20px;
   margin: 10px auto 0 auto;
-}
 
-.group-content {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
+  .group-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 
-h1 {
-  text-align: left;
-  border-bottom: solid 3px black;
-  padding-left: 20px;
+    @media (max-width: $tablet) {
+      justify-content: center;
+    }
+    @media (max-width: $mobile) {
+      display: block;
+    }
+  }
+
+  h1 {
+    text-align: left;
+    border-bottom: solid 3px black;
+    padding-left: 20px;
+
+    @media (max-width: 1050px) {
+      text-align: center;
+      padding-left: 0;
+    }
+  }
 }

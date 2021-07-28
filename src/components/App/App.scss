@@ -3,6 +3,9 @@
   src: url('/stuff/fonts/Nunito-SemiBold.ttf');
 }
 
+$tablet: 1250px;
+$mobile: 500px;
+
 * {
   font-family: Nunito;
   margin: 0;
@@ -16,7 +19,7 @@
     margin: 0 auto;
     width: 60%;
     text-align: center;
-    @media (max-width: 1000px) {
+    @media (max-width: 1050px) {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -31,4 +34,8 @@
   margin: 40px auto;
   justify-content: space-around;
   flex-wrap: wrap;
+  @media (max-width: $tablet) {
+    width: 80%;
+    margin: 0;
+  }
 }
