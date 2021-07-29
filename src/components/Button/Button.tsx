@@ -3,15 +3,23 @@ import './Button.scss'
 
 interface Props {
   active?: boolean
-  type: string
+  action: string
   children: string
   onClick: () => void
+  type: 'button' | 'submit' | 'reset'
 }
 
-const Button: React.FC<Props> = ({ type, children, onClick, active }) => {
+const Button: React.FC<Props> = ({
+  action,
+  type,
+  children,
+  onClick,
+  active,
+}) => {
   return (
     <button
-      className={[type, 'btn'].join(' ')}
+      type={type}
+      className={[action, 'btn'].join(' ')}
       disabled={active}
       onClick={onClick}
     >

@@ -4,14 +4,15 @@ import './Input.scss'
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   value: string
+  placeholder: string
+  type: string
 }
 
-const Input: React.FC<Props> = ({ onChange, value }) => {
+const Input: React.FC<Props> = ({ onChange, value, placeholder, type }) => {
   return (
     <input
-      type="text"
-      autoFocus
-      placeholder="Введите тег"
+      type={type}
+      placeholder={placeholder}
       onChange={onChange}
       value={value}
     />

@@ -71,18 +71,24 @@ const App: React.FC = () => {
   return (
     <div className="container">
       <div className="content">
-        <Input onChange={inputValueHandler} value={value} />
+        <Input
+          onChange={inputValueHandler}
+          value={value}
+          type="text"
+          placeholder="Введите тег"
+        />
         <Button
+          type="button"
           active={state.loading}
-          type="download"
+          action="download"
           onClick={downloadPicturesHandler}
         >
           {state.loading ? 'Загрузка...' : 'Загрузить'}
         </Button>
-        <Button type="delete" onClick={deletePicturesHandler}>
+        <Button type="button" action="delete" onClick={deletePicturesHandler}>
           Очистить
         </Button>
-        <Button type="group" onClick={groupPicturesHandler}>
+        <Button type="button" action="group" onClick={groupPicturesHandler}>
           {isGroup ? 'Разгруппировать' : 'Группировать'}
         </Button>
         <Error error={error} value={value} />

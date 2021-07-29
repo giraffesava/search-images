@@ -29,25 +29,24 @@
   &:hover {
     opacity: 0.8;
   }
-}
-
-.download {
-  background-color: rgb(0, 165, 0);
-  &:disabled {
-    background-color: rgb(42, 88, 46);
-    cursor: not-allowed;
+  &.download {
+    background-color: rgb(0, 165, 0);
+    &:disabled {
+      background-color: rgb(42, 88, 46);
+      cursor: not-allowed;
+    }
   }
-}
-.delete {
-  background-color: rgb(227, 3, 3);
-}
-.group {
-  background-color: rgb(72, 23, 218);
-  width: 160px;
-  @media (max-width: $tablet) {
-    width: 400px;
+  &.delete {
+    background-color: rgb(227, 3, 3);
   }
-  @media (max-width: $mobile) {
-    width: 200px;
+  &.group {
+    background-color: rgb(72, 23, 218);
+    width: 160px;
+    @media (max-width: $tablet) {
+      width: 400px;
+    }
+    @media (max-width: $mobile) {
+      width: 200px;
+    }
   }
 }
